@@ -1,0 +1,322 @@
+---
+import { Image } from 'astro:assets';
+import '../styles/global.css';
+import portrait from '../assets/ruanne-portrait.jpg';
+import outdoor from '../assets/ruanne-outdoor.jpg';
+import veldmuisLogo from '../assets/veldmuis-logo.png';
+
+const navItems = [
+  { label: 'Veldmuis', href: '#veldmuis' },
+  { label: 'Craft', href: '#craft' },
+  { label: 'Chronicle', href: '#chronicle' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const tickerItems = [
+  'Senior software developer',
+  'AI-native builder',
+  'Team lead',
+  'DevOps tinkerer',
+  'Full-stack builder',
+  'Veldmuis maintainer',
+  'Linux enthusiast',
+  'Problem unraveller',
+  'Feature architect',
+];
+
+const skills = [
+  {
+    title: 'Frontend',
+    items: ['Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'AI-assisted interfaces'],
+  },
+  {
+    title: 'Backend',
+    items: ['Kotlin', 'Spring Boot', 'C#', '.NET', 'Java', 'Python', 'Go', 'API design'],
+  },
+  {
+    title: 'Systems',
+    items: ['Linux', 'Shell', 'Arch packaging', 'Kubernetes', 'Ansible-style deployments', 'Veldmuis'],
+  },
+  {
+    title: 'Data',
+    items: ['PostgreSQL', 'MySQL', 'MS SQL', 'Oracle', 'DB2', 'Reporting systems'],
+  },
+  {
+    title: 'Delivery',
+    items: ['CI/CD', 'Bitbucket', 'Jenkins', 'Microservices', 'AI-enabled workflows', 'Feature delivery'],
+  },
+  {
+    title: 'Leadership',
+    items: ['Team leadership', 'Upskilling', 'Pairing', 'Support', 'Direct communication', 'Product ownership'],
+  },
+];
+
+const experience = [
+  {
+    period: '2021 - Present',
+    role: 'Senior Software Developer / Team Lead',
+    company: 'VAT IT',
+    copy:
+      'I lead, build, ship, support, and keep the delivery engine moving: microservices, CI/CD, Kotlin and Spring Boot backends, Angular frontends, and product work that has to survive real business weather.',
+  },
+  {
+    period: '2019 - 2021',
+    role: 'Full Stack Engineer',
+    company: 'Radixtrie',
+    copy:
+      'I worked on Data Aggregator / DBI, a reporting and visibility system that discovered servers and database instances, collected capacity and structure data, and helped surface places that needed repair.',
+  },
+  {
+    period: '2015 - 2019',
+    role: 'Full Stack Engineer',
+    company: 'Movation',
+    copy:
+      'I grew from junior developer into team lead work, client-facing delivery, testing, support, database work, rollout pressure, and the practical art of keeping older systems useful.',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Ruanne Bornman is an AI-native senior software developer, team lead, and maintainer of Veldmuis Linux."
+    />
+    <title>Ruanne Bornman | Developer Codex</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <aside class="marginalia marginalia-left" aria-hidden="true">
+        <div class="marginal-frame"></div>
+      </aside>
+
+      <aside class="marginalia marginalia-right" aria-hidden="true">
+        <div class="marginal-frame"></div>
+      </aside>
+
+      <div class="manuscript">
+        <header class="topbar" aria-label="Site header">
+          <a class="brand-lockup" href="#top" aria-label="Ruanne Bornman home">
+            <span class="brand-seal" aria-hidden="true">RB</span>
+            <span>Ruanne Bornman</span>
+          </a>
+
+          <nav class="nav-links" aria-label="Primary navigation">
+            {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+          </nav>
+        </header>
+
+        <main id="top">
+          <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-copy">
+              <p class="eyebrow">The Developer Codex</p>
+              <h1 id="hero-title">Ruanne Bornman</h1>
+              <p class="hero-lead">
+                I am an AI-native senior software developer and team lead who builds
+                practical software, odd tools, Linux experiments, and future-facing
+                systems with the machine turned all the way on.
+              </p>
+              <div class="hero-actions" aria-label="Primary actions">
+                <a class="button" href="https://github.com/ruannnebornman" target="_blank" rel="noreferrer noopener">
+                  View GitHub
+                </a>
+                <a class="button secondary" href="https://www.linkedin.com/in/ruannebornman" target="_blank" rel="noreferrer noopener">
+                  LinkedIn
+                </a>
+                <a class="button secondary" href="mailto:work@ruannebornman.com">
+                  Contact
+                </a>
+                <span class="button" aria-disabled="true" title="CV PDF coming soon">
+                  CV coming soon
+                </span>
+              </div>
+            </div>
+
+            <aside class="portrait-panel" aria-label="Profile details">
+              <div class="portrait-frame">
+                <Image src={portrait} alt="Portrait of Ruanne Bornman" width={360} height={360} loading="eager" />
+              </div>
+              <div class="ledger">
+                <span><strong>Role:</strong> Senior Software Developer at VAT IT</span>
+                <span><strong>Focus:</strong> Team lead / DevOps / full stack</span>
+                <span><strong>Based:</strong> Midrand, South Africa</span>
+                <span><strong>Languages:</strong> English, Afrikaans</span>
+              </div>
+            </aside>
+
+            <div class="ticker" aria-label="Role banner">
+              <div class="ticker-track">
+                {[...tickerItems, ...tickerItems].map((item) => <span>{item}</span>)}
+              </div>
+            </div>
+          </section>
+
+          <section class="section alt" id="veldmuis" aria-labelledby="veldmuis-title">
+            <div class="section-header">
+              <p class="eyebrow">Crown Project</p>
+              <h2 id="veldmuis-title">I built and maintain Veldmuis Linux.</h2>
+              <p>
+                Veldmuis is an Arch-based KDE Plasma distribution with a signed
+                package flow, a Calamares installer, and a systemd-boot install path.
+                It is crafted in the veld, built in the open, and updated with a
+                practical monthly rhythm.
+              </p>
+            </div>
+
+            <div class="veldmuis-layout">
+              <div class="crest" aria-label="Veldmuis mark">
+                <div class="crest-logo">
+                  <Image src={veldmuisLogo} alt="Veldmuis Linux logo" width={260} height={260} />
+                </div>
+                <div class="crest-caption">Crafted in the veld, built in the open.</div>
+              </div>
+
+              <div class="charter">
+                <p>
+                  New repo and ISO builds are intended around the first of each
+                  month. Other updates happen when they are ready, which is a
+                  reasonable way to run a small distro without pretending a calendar
+                  is a compiler.
+                </p>
+
+                <div class="stat-grid" aria-label="Veldmuis details">
+                  <div class="stat"><b>Desktop</b>KDE Plasma</div>
+                  <div class="stat"><b>Base</b>Arch Linux</div>
+                  <div class="stat"><b>Installer</b>Calamares</div>
+                </div>
+
+                <div class="button-row">
+                  <a class="button" href="https://veldmuislinux.org/" target="_blank" rel="noreferrer noopener">
+                    Visit Veldmuis
+                  </a>
+                  <a class="button secondary" href="https://github.com/ruannnebornman/veldmuis" target="_blank" rel="noreferrer noopener">
+                    Source Repo
+                  </a>
+                  <a class="button secondary" href="https://github.com/ruannnebornman/veldmuis-website" target="_blank" rel="noreferrer noopener">
+                    Website Repo
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="craft" aria-labelledby="craft-title">
+            <div class="section-header">
+              <p class="eyebrow">Craft Inventory</p>
+              <h2 id="craft-title">Things I can reliably bring to the table.</h2>
+              <p>
+                My work sits somewhere between product delivery, team leadership,
+                modern service architecture, AI-assisted building, frontend surfaces,
+                database wrangling, and the occasional Linux detour with a release
+                pipeline.
+              </p>
+            </div>
+
+            <div class="skill-grid">
+              {skills.map((group) => (
+                <section class="skill-group" aria-labelledby={`skill-${group.title.toLowerCase()}`}>
+                  <h3 id={`skill-${group.title.toLowerCase()}`}>{group.title}</h3>
+                  <div class="chip-list">
+                    {group.items.map((item) => <span class="chip">{item}</span>)}
+                  </div>
+                </section>
+              ))}
+            </div>
+          </section>
+
+          <section class="section alt" id="chronicle" aria-labelledby="chronicle-title">
+            <div class="section-header">
+              <p class="eyebrow">Chronicle</p>
+              <h2 id="chronicle-title">I like leading, building, pairing, and finding the story in old systems.</h2>
+              <p>
+                I am direct, open to correction, and happiest around people who can
+                challenge an idea without turning the room into theatre.
+              </p>
+            </div>
+
+            <div class="chronicle">
+              {experience.map((item) => (
+                <article class="entry">
+                  <time>{item.period}</time>
+                  <div>
+                    <h3>{item.role}</h3>
+                    <p><strong>{item.company}</strong></p>
+                    <p>{item.copy}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section class="section" aria-labelledby="github-title">
+            <div class="github-portal">
+              <div>
+                <p class="eyebrow">Public Work Archive</p>
+                <h2 id="github-title">GitHub is the shelf.</h2>
+                <p>
+                  I am not maintaining a museum catalogue here. My GitHub is where
+                  the tools, experiments, distro work, scripts, and useful oddities
+                  live as they change.
+                </p>
+              </div>
+              <a class="button" href="https://github.com/ruannnebornman" target="_blank" rel="noreferrer noopener">
+                Open GitHub
+              </a>
+            </div>
+          </section>
+
+          <section class="section alt" aria-labelledby="about-title">
+            <div class="about-layout">
+              <div class="about-copy">
+                <p class="eyebrow">About</p>
+                <h2 id="about-title">Useful, a little strange, and built with the future switched on.</h2>
+                <p>
+                  I love AI. Not as a footnote, not as a secret productivity trick,
+                  and definitely not as something to apologize for. I build with it
+                  in the loop, on purpose, because the future is already here and I
+                  would rather be early than polite about it.
+                </p>
+                <p>
+                  Give me a team, an awkward legacy system, a half-described product
+                  problem, or a Linux idea that has wandered too far into the grass,
+                  and I will bring the maps, the tools, the prompts, the code, and
+                  the stubborn joy of making the whole thing move.
+                </p>
+              </div>
+              <div class="about-image">
+                <Image src={outdoor} alt="Ruanne outdoors" width={320} height={420} loading="eager" />
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="contact" aria-labelledby="contact-title">
+            <div class="contact-panel">
+              <div>
+                <p class="eyebrow">Sealed Letter</p>
+                <h2 id="contact-title">Talk to me.</h2>
+                <p>
+                  The useful doors are here: email, GitHub, LinkedIn, and eventually
+                  a downloadable CV once the final PDF is ready.
+                </p>
+              </div>
+              <div class="button-row">
+                <a class="button" href="mailto:work@ruannebornman.com">Email</a>
+                <a class="button secondary" href="https://www.linkedin.com/in/ruannebornman" target="_blank" rel="noreferrer noopener">
+                  LinkedIn
+                </a>
+                <span class="button" aria-disabled="true" title="CV PDF coming soon">CV coming soon</span>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="site-footer">
+        <p>Ruanne Bornman. Senior Software Developer. Veldmuis maintainer.</p>
+      </footer>
+    </div>
+  </body>
+</html>
