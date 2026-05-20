@@ -7,15 +7,52 @@ import portraitPlate from '../assets/chatgpt-plate-portrait.webp';
 import veldmuisLogo from '../assets/veldmuis-logo.png';
 
 const tickerItems = [
-  'Senior software developer',
-  'AI-native builder',
-  'Tech lead',
-  'DevOps tinkerer',
-  'Full-stack builder',
-  'Veldmuis maintainer',
-  'Linux enthusiast',
-  'Problem unraveller',
-  'Feature architect',
+  'ai-native senior spellsmith',
+  'veldmuis distro keeper',
+  'linux release alchemist',
+  'prompt forge operator',
+  'llm battle mage',
+  'pallet town package maintainer',
+  'neon genesis refactor pilot',
+  'elden ring bug slayer',
+  'dark souls rollback survivor',
+  'doomscroll daemon tamer',
+  'skyrim side-quest engineer',
+  'stardew valley automation farmer',
+  'terraria spelunker of legacy code',
+  'cyberpunk patch runner',
+  'blade runner prompt detective',
+  'dune spice-flow optimizer',
+  'starfleet incident commander',
+  'runic systems archivist',
+  'ancient tech codex keeper',
+  'medieval machine priest',
+  'arch linux rune mason',
+  'systemd-boot cartographer',
+  'legacy system archaeologist',
+  'kde plasma cartographer',
+  'pokedex packet inspector',
+  'kanto kernel trainer',
+  'team rocket incident responder',
+  'cowboy bebop build wrangler',
+  'trigun stack whisperer',
+  'one piece roadmap navigator',
+  'dungeon master of deployments',
+  'factorio conveyor prophet',
+  'minecraft redstone architect',
+  'hyrule schema cartographer',
+  'mushroom kingdom ops plumber',
+  'sith-proof code reviewer',
+  'jedi merge conflict mediator',
+  'shire homelab keeper',
+  'calamares install pathfinder',
+  'microservice exorcist',
+  'database cave diver',
+  'postgres rune reader',
+  'kotlin spellbook editor',
+  'angular sigil painter',
+  'typescript time traveler',
+  'back-from-the-future builder',
 ];
 
 const skills = [
@@ -119,7 +156,13 @@ const experience = [
       name="description"
       content="Ruanne Bornman is an AI-native senior software developer, tech lead, and maintainer of Veldmuis Linux."
     />
-    <title>Ruanne Bornman | Developer Codex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap"
+      rel="stylesheet"
+    />
+    <title>Ruanne Bornman Codex</title>
   </head>
   <body>
     <div class="site-shell">
@@ -136,11 +179,9 @@ const experience = [
           <section class="hero">
             <div class="hero-copy">
               <p class="eyebrow">The Developer Codex</p>
-              <h1>Ruanne Bornman</h1>
+              <h2>Ruanne Bornman</h2>
               <p class="hero-lead">
-                I am an AI-native senior software developer and tech lead who builds
-                practical software, odd tools, Linux experiments, and future-facing
-                systems with the machine turned all the way on.
+                I am an AI-native tech lead who builds practical software and futuristic systems with the everything turned up to 11.
               </p>
               <div class="hero-actions" aria-label="Primary actions">
                 <a class="button" href="https://github.com/ruannnebornman" target="_blank" rel="noreferrer noopener">
@@ -172,7 +213,7 @@ const experience = [
             </aside>
 
             <div class="ticker" aria-label="Role banner">
-              <div class="ticker-track">
+              <div class="ticker-track" data-ticker-track>
                 {[...tickerItems, ...tickerItems].map((item) => <span>{item}</span>)}
               </div>
             </div>
@@ -185,8 +226,6 @@ const experience = [
               <p>
                 Veldmuis is an Arch-based KDE Plasma distribution with a signed
                 package flow, a Calamares installer, and a systemd-boot install path.
-                It is crafted in the veld, built in the open, and updated with a
-                practical monthly rhythm.
               </p>
             </div>
 
@@ -200,10 +239,8 @@ const experience = [
 
               <div class="charter">
                 <p>
-                  New repo and ISO builds are intended around the first of each
-                  month. Other updates happen when they are ready, which is a
-                  reasonable way to run a small distro without pretending a calendar
-                  is a compiler.
+                  New repo and ISO builds are released on the first of each
+                  month.
                 </p>
 
                 <div class="stat-grid" aria-label="Veldmuis details">
@@ -227,10 +264,10 @@ const experience = [
             </div>
           </section>
 
-          <section class="section">
+          <section class="section craft-section">
             <div class="section-header">
               <p class="eyebrow">Craft Inventory</p>
-              <h2>Things I can reliably bring to the table.</h2>
+              <h2>Things I reliably bring to the table.</h2>
               <p>
                 My work sits somewhere between product delivery, tech leadership,
                 modern service architecture, AI-assisted building, frontend surfaces,
@@ -347,7 +384,7 @@ const experience = [
       </div>
 
       <footer class="site-footer">
-        <p>Ruanne Bornman. Senior Software Developer. Veldmuis maintainer.</p>
+        <p>Ruanne Bornman. Senior Software Developer. Veldmuis creator.</p>
       </footer>
     </div>
     <script is:inline>
@@ -380,6 +417,29 @@ const experience = [
       document.querySelectorAll('[data-duration-start]').forEach((item) => {
         item.textContent = formatLiveDuration(item.dataset.durationStart, item.dataset.durationEnd);
       });
+
+      const shuffleTicker = () => {
+        const track = document.querySelector('[data-ticker-track]');
+
+        if (!track) {
+          return;
+        }
+
+        const spans = Array.from(track.querySelectorAll('span'));
+        const itemCount = spans.length / 2;
+        const items = spans.slice(0, itemCount).map((item) => item.textContent);
+
+        for (let index = items.length - 1; index > 0; index -= 1) {
+          const randomIndex = Math.floor(Math.random() * (index + 1));
+          [items[index], items[randomIndex]] = [items[randomIndex], items[index]];
+        }
+
+        [...items, ...items].forEach((item, index) => {
+          spans[index].textContent = item;
+        });
+      };
+
+      shuffleTicker();
     </script>
   </body>
 </html>
