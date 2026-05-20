@@ -1,21 +1,15 @@
 ---
 import { Image } from 'astro:assets';
 import '../styles/global.css';
-import portrait from '../assets/ruanne-portrait.jpg';
-import outdoor from '../assets/ruanne-outdoor.jpg';
+import adventurerPlate from '../assets/chatgpt-plate-adventurer.webp';
+import outdoorPlate from '../assets/chatgpt-plate-outdoor.webp';
+import portraitPlate from '../assets/chatgpt-plate-portrait.webp';
 import veldmuisLogo from '../assets/veldmuis-logo.png';
-
-const navItems = [
-  { label: 'Veldmuis', href: '#veldmuis' },
-  { label: 'Craft', href: '#craft' },
-  { label: 'Chronicle', href: '#chronicle' },
-  { label: 'Contact', href: '#contact' },
-];
 
 const tickerItems = [
   'Senior software developer',
   'AI-native builder',
-  'Team lead',
+  'Tech lead',
   'DevOps tinkerer',
   'Full-stack builder',
   'Veldmuis maintainer',
@@ -47,33 +41,73 @@ const skills = [
   },
   {
     title: 'Leadership',
-    items: ['Team leadership', 'Upskilling', 'Pairing', 'Support', 'Direct communication', 'Product ownership'],
+    items: ['Tech leadership', 'Upskilling', 'Pairing', 'Support', 'Direct communication', 'Product ownership'],
   },
 ];
 
+const monthFormatter = new Intl.DateTimeFormat('en', {
+  month: 'long',
+  year: 'numeric',
+});
+
+const parseMonth = (value: string) => {
+  const [year, month] = value.split('-').map(Number);
+  return new Date(year, month - 1, 1);
+};
+
+const formatMonth = (value: string) => monthFormatter.format(parseMonth(value));
+
+const formatDuration = (startValue: string, endValue?: string) => {
+  const start = parseMonth(startValue);
+  const end = endValue ? parseMonth(endValue) : new Date();
+  const monthCount = Math.max(
+    0,
+    (end.getFullYear() - start.getFullYear()) * 12 + end.getMonth() - start.getMonth(),
+  );
+  const years = Math.floor(monthCount / 12);
+  const months = monthCount % 12;
+  const parts = [];
+
+  if (years) {
+    parts.push(`${years} ${years === 1 ? 'year' : 'years'}`);
+  }
+
+  if (months) {
+    parts.push(`${months} ${months === 1 ? 'month' : 'months'}`);
+  }
+
+  return parts.join(' ') || 'Less than 1 month';
+};
+
 const experience = [
   {
-    period: '2021 - Present',
-    role: 'Senior Software Developer / Team Lead',
+    start: '2021-06',
+    role: 'Senior Software Developer / Tech Lead',
     company: 'VAT IT',
     copy:
       'I lead, build, ship, support, and keep the delivery engine moving: microservices, CI/CD, Kotlin and Spring Boot backends, Angular frontends, and product work that has to survive real business weather.',
   },
   {
-    period: '2019 - 2021',
+    start: '2019-11',
+    end: '2021-05',
     role: 'Full Stack Engineer',
     company: 'Radixtrie',
     copy:
       'I worked on Data Aggregator / DBI, a reporting and visibility system that discovered servers and database instances, collected capacity and structure data, and helped surface places that needed repair.',
   },
   {
-    period: '2015 - 2019',
+    start: '2015-03',
+    end: '2019-03',
     role: 'Full Stack Engineer',
     company: 'Movation',
     copy:
-      'I grew from junior developer into team lead work, client-facing delivery, testing, support, database work, rollout pressure, and the practical art of keeping older systems useful.',
+      'I grew from junior developer into tech lead work, client-facing delivery, testing, support, database work, rollout pressure, and the practical art of keeping older systems useful.',
   },
-];
+].map((item) => ({
+  ...item,
+  period: `${formatMonth(item.start)} - ${item.end ? formatMonth(item.end) : 'Present'}`,
+  duration: formatDuration(item.start, item.end),
+}));
 ---
 
 <!doctype html>
@@ -83,7 +117,7 @@ const experience = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Ruanne Bornman is an AI-native senior software developer, team lead, and maintainer of Veldmuis Linux."
+      content="Ruanne Bornman is an AI-native senior software developer, tech lead, and maintainer of Veldmuis Linux."
     />
     <title>Ruanne Bornman | Developer Codex</title>
   </head>
@@ -98,24 +132,13 @@ const experience = [
       </aside>
 
       <div class="manuscript">
-        <header class="topbar" aria-label="Site header">
-          <a class="brand-lockup" href="#top" aria-label="Ruanne Bornman home">
-            <span class="brand-seal" aria-hidden="true">RB</span>
-            <span>Ruanne Bornman</span>
-          </a>
-
-          <nav class="nav-links" aria-label="Primary navigation">
-            {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
-          </nav>
-        </header>
-
-        <main id="top">
-          <section class="hero" aria-labelledby="hero-title">
+        <main>
+          <section class="hero">
             <div class="hero-copy">
               <p class="eyebrow">The Developer Codex</p>
-              <h1 id="hero-title">Ruanne Bornman</h1>
+              <h1>Ruanne Bornman</h1>
               <p class="hero-lead">
-                I am an AI-native senior software developer and team lead who builds
+                I am an AI-native senior software developer and tech lead who builds
                 practical software, odd tools, Linux experiments, and future-facing
                 systems with the machine turned all the way on.
               </p>
@@ -137,13 +160,14 @@ const experience = [
 
             <aside class="portrait-panel" aria-label="Profile details">
               <div class="portrait-frame">
-                <Image src={portrait} alt="Portrait of Ruanne Bornman" width={360} height={360} loading="eager" />
+                <Image src={outdoorPlate} alt="Illuminated manuscript portrait of Ruanne outdoors" width={360} height={450} loading="eager" />
               </div>
               <div class="ledger">
-                <span><strong>Role:</strong> Senior Software Developer at VAT IT</span>
-                <span><strong>Focus:</strong> Team lead / DevOps / full stack</span>
-                <span><strong>Based:</strong> Midrand, South Africa</span>
-                <span><strong>Languages:</strong> English, Afrikaans</span>
+                <span><strong>Role</strong><em>Senior Software Developer</em></span>
+                <span><strong>Company</strong><em>VAT IT</em></span>
+                <span><strong>Focus</strong><em>Tech lead</em></span>
+                <span><strong>Based</strong><em>Midrand, South Africa</em></span>
+                <span><strong>Languages</strong><em>English, Afrikaans</em></span>
               </div>
             </aside>
 
@@ -154,10 +178,10 @@ const experience = [
             </div>
           </section>
 
-          <section class="section alt" id="veldmuis" aria-labelledby="veldmuis-title">
+          <section class="section alt">
             <div class="section-header">
               <p class="eyebrow">Crown Project</p>
-              <h2 id="veldmuis-title">I built and maintain Veldmuis Linux.</h2>
+              <h2>I built and maintain Veldmuis Linux.</h2>
               <p>
                 Veldmuis is an Arch-based KDE Plasma distribution with a signed
                 package flow, a Calamares installer, and a systemd-boot install path.
@@ -203,12 +227,12 @@ const experience = [
             </div>
           </section>
 
-          <section class="section" id="craft" aria-labelledby="craft-title">
+          <section class="section">
             <div class="section-header">
               <p class="eyebrow">Craft Inventory</p>
-              <h2 id="craft-title">Things I can reliably bring to the table.</h2>
+              <h2>Things I can reliably bring to the table.</h2>
               <p>
-                My work sits somewhere between product delivery, team leadership,
+                My work sits somewhere between product delivery, tech leadership,
                 modern service architecture, AI-assisted building, frontend surfaces,
                 database wrangling, and the occasional Linux detour with a release
                 pipeline.
@@ -217,8 +241,8 @@ const experience = [
 
             <div class="skill-grid">
               {skills.map((group) => (
-                <section class="skill-group" aria-labelledby={`skill-${group.title.toLowerCase()}`}>
-                  <h3 id={`skill-${group.title.toLowerCase()}`}>{group.title}</h3>
+                <section class="skill-group">
+                  <h3>{group.title}</h3>
                   <div class="chip-list">
                     {group.items.map((item) => <span class="chip">{item}</span>)}
                   </div>
@@ -227,10 +251,10 @@ const experience = [
             </div>
           </section>
 
-          <section class="section alt" id="chronicle" aria-labelledby="chronicle-title">
+          <section class="section alt">
             <div class="section-header">
               <p class="eyebrow">Chronicle</p>
-              <h2 id="chronicle-title">I like leading, building, pairing, and finding the story in old systems.</h2>
+              <h2>I like leading, building, pairing, and finding the story in old systems.</h2>
               <p>
                 I am direct, open to correction, and happiest around people who can
                 challenge an idea without turning the room into theatre.
@@ -240,7 +264,10 @@ const experience = [
             <div class="chronicle">
               {experience.map((item) => (
                 <article class="entry">
-                  <time>{item.period}</time>
+                  <div class="entry-date">
+                    <time>{item.period}</time>
+                    <span data-duration-start={item.start} data-duration-end={item.end}>{item.duration}</span>
+                  </div>
                   <div>
                     <h3>{item.role}</h3>
                     <p><strong>{item.company}</strong></p>
@@ -251,11 +278,11 @@ const experience = [
             </div>
           </section>
 
-          <section class="section" aria-labelledby="github-title">
+          <section class="section">
             <div class="github-portal">
               <div>
                 <p class="eyebrow">Public Work Archive</p>
-                <h2 id="github-title">GitHub is the shelf.</h2>
+                <h2>GitHub is the shelf.</h2>
                 <p>
                   I am not maintaining a museum catalogue here. My GitHub is where
                   the tools, experiments, distro work, scripts, and useful oddities
@@ -268,11 +295,11 @@ const experience = [
             </div>
           </section>
 
-          <section class="section alt" aria-labelledby="about-title">
+          <section class="section alt">
             <div class="about-layout">
               <div class="about-copy">
                 <p class="eyebrow">About</p>
-                <h2 id="about-title">Useful, a little strange, and built with the future switched on.</h2>
+                <h2>Useful, a little strange, and built with the future switched on.</h2>
                 <p>
                   I love AI. Not as a footnote, not as a secret productivity trick,
                   and definitely not as something to apologize for. I build with it
@@ -286,17 +313,22 @@ const experience = [
                   the stubborn joy of making the whole thing move.
                 </p>
               </div>
-              <div class="about-image">
-                <Image src={outdoor} alt="Ruanne outdoors" width={320} height={420} loading="eager" />
+              <div class="plate-gallery" aria-label="Illuminated portrait plates">
+                <figure class="plate-card plate-card-large">
+                  <Image src={adventurerPlate} alt="Illuminated manuscript portrait of Ruanne in a futuristic adventurer style" width={450} height={562} loading="lazy" />
+                </figure>
+                <figure class="plate-card">
+                  <Image src={portraitPlate} alt="Illuminated manuscript portrait of Ruanne Bornman" width={450} height={562} loading="lazy" />
+                </figure>
               </div>
             </div>
           </section>
 
-          <section class="section" id="contact" aria-labelledby="contact-title">
+          <section class="section contact-section">
             <div class="contact-panel">
               <div>
                 <p class="eyebrow">Sealed Letter</p>
-                <h2 id="contact-title">Talk to me.</h2>
+                <h2>Talk to me.</h2>
                 <p>
                   The useful doors are here: email, GitHub, LinkedIn, and eventually
                   a downloadable CV once the final PDF is ready.
@@ -318,5 +350,36 @@ const experience = [
         <p>Ruanne Bornman. Senior Software Developer. Veldmuis maintainer.</p>
       </footer>
     </div>
+    <script is:inline>
+      const formatLiveDuration = (startValue, endValue) => {
+        const parseMonth = (value) => {
+          const [year, month] = value.split('-').map(Number);
+          return { year, month: month - 1 };
+        };
+        const start = parseMonth(startValue);
+        const now = new Date();
+        const end = endValue
+          ? parseMonth(endValue)
+          : { year: now.getFullYear(), month: now.getMonth() };
+        const monthCount = Math.max(0, (end.year - start.year) * 12 + end.month - start.month);
+        const years = Math.floor(monthCount / 12);
+        const months = monthCount % 12;
+        const parts = [];
+
+        if (years) {
+          parts.push(`${years} ${years === 1 ? 'year' : 'years'}`);
+        }
+
+        if (months) {
+          parts.push(`${months} ${months === 1 ? 'month' : 'months'}`);
+        }
+
+        return parts.join(' ') || 'Less than 1 month';
+      };
+
+      document.querySelectorAll('[data-duration-start]').forEach((item) => {
+        item.textContent = formatLiveDuration(item.dataset.durationStart, item.dataset.durationEnd);
+      });
+    </script>
   </body>
 </html>
