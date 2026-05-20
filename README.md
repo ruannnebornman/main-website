@@ -23,10 +23,10 @@ Run locally:
 npm run dev
 ```
 
-The dev server usually opens at:
+Because the site is configured as a GitHub Pages project site, the dev URL is:
 
 ```txt
-http://127.0.0.1:4321/
+http://127.0.0.1:4321/main-website/
 ```
 
 ## Checks
@@ -55,6 +55,19 @@ npm run preview
 - `src/styles/global.css` - manuscript framing, responsive layout, typography, and ornament styling.
 - `src/assets/ornaments/` - optimized decorative manuscript assets used by CSS.
 - `src/assets/` - optimized image assets used by Astro.
+- `.github/workflows/deploy.yml` - GitHub Actions workflow for GitHub Pages.
+
+## Deployment
+
+The site is configured for GitHub Pages at:
+
+```txt
+https://ruannnebornman.github.io/main-website/
+```
+
+Deployment runs automatically on pushes to `main` using GitHub Actions.
+
+In GitHub repository settings, Pages should use **GitHub Actions** as the build and deployment source.
 
 ## Notes
 
