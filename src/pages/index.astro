@@ -6,6 +6,10 @@ import outdoorPlate from '../assets/chatgpt-plate-outdoor.webp';
 import portraitPlate from '../assets/chatgpt-plate-portrait.webp';
 import veldmuisLogo from '../assets/veldmuis-logo.png';
 
+const basePath = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
 const tickerItems = [
   'ai-native senior spellsmith',
   'veldmuis distro keeper',
@@ -156,6 +160,9 @@ const experience = [
       name="description"
       content="Ruanne Bornman is an AI-native senior software developer, tech lead, and maintainer of Veldmuis Linux."
     />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${basePath}favicon-32x32.png`} />
+    <link rel="icon" type="image/png" sizes="192x192" href={`${basePath}favicon-192x192.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${basePath}apple-touch-icon.png`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -181,7 +188,7 @@ const experience = [
               <p class="eyebrow">The Developer Codex</p>
               <h2>Ruanne Bornman</h2>
               <p class="hero-lead">
-                I am an AI-native tech lead who builds practical software and futuristic systems with the everything turned up to 11.
+                I am an AI-native tech lead who builds practical software and futuristic systems with everything turned up to 11.
               </p>
               <div class="hero-actions" aria-label="Primary actions">
                 <a class="button" href="https://github.com/ruannnebornman" target="_blank" rel="noreferrer noopener">
