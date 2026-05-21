@@ -23,10 +23,10 @@ Run locally:
 npm run dev
 ```
 
-Because the site is configured as a GitHub Pages project site, the dev URL is:
+The dev URL is:
 
 ```txt
-http://127.0.0.1:4321/main-website/
+http://127.0.0.1:4321/
 ```
 
 ## Checks
@@ -59,10 +59,10 @@ npm run preview
 
 ## Deployment
 
-The site is configured for GitHub Pages at:
+The site is configured for GitHub Pages with a custom domain:
 
 ```txt
-https://ruannnebornman.github.io/main-website/
+https://ruannebornman.com/
 ```
 
 Deployment runs automatically on pushes to `main` using GitHub Actions.
