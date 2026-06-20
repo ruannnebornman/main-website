@@ -221,7 +221,8 @@ const experience = [
 
             <div class="ticker" aria-label="Role banner">
               <div class="ticker-track" data-ticker-track>
-                {[...tickerItems, ...tickerItems].map((item) => <span>{item}</span>)}
+                {tickerItems.map((item) => <span>{item}</span>)}
+                {tickerItems.map((item) => <span aria-hidden="true">{item}</span>)}
               </div>
             </div>
           </section>

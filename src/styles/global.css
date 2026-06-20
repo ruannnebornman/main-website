@@ -390,6 +390,7 @@ h1 {
   z-index: 3;
   grid-column: 1 / -1;
   overflow: hidden;
+  contain: paint;
   background:
     linear-gradient(90deg, rgba(255, 247, 227, 0.42), rgba(93, 140, 178, 0.08), rgba(255, 247, 227, 0.42)),
     rgba(255, 247, 227, 0.58);
@@ -401,6 +402,7 @@ h1 {
   display: flex;
   width: max-content;
   animation: ticker 80s linear infinite;
+  will-change: transform;
 }
 
 .ticker-track span {
@@ -738,6 +740,55 @@ h1 {
 
 @media (max-width: 1700px) {
   .marginalia {
+    display: none;
+  }
+}
+
+@media (max-width: 640px), (pointer: coarse) {
+  body::before,
+  body::after {
+    display: none;
+  }
+
+  .manuscript,
+  .portrait-panel,
+  .crest,
+  .skill-group,
+  .github-portal,
+  .contact-panel,
+  .plate-card {
+    background-blend-mode: normal;
+  }
+
+  .manuscript::before,
+  .hero::before,
+  .hero::after,
+  .section::before {
+    filter: none;
+    mix-blend-mode: normal;
+  }
+
+  .manuscript::after {
+    display: none;
+  }
+
+  .section::before,
+  .ticker {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .ticker {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ticker-track {
+    animation: none;
+    will-change: auto;
+  }
+
+  .ticker-track span[aria-hidden="true"] {
     display: none;
   }
 }
